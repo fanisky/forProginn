@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  gitlab:
+    image: 'gitlab/gitlab-ce'
+    ports:
+#      - "8001:80"
+      - "2201:22"
+      - "4431:443"
+    container_name: 'gitlab'
+    volumes:
+      - "/data/docker_data/gitlab/config:/etc/gitlab"
+      - "/data/docker_data/gitlab/logs:/var/log/gitlab"
+      - "/data/docker_data/gitlab/data:/var/opt/gitlab"
+#    expose:
+#      - "80"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.jojin.com'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2201
+    hostname: 'gitlab.jojin.com'
+    networks:
+      - 'default_net'
+    tmpfs:
+      - /tmp
+    
+    
+networks:
+  default_net:
+    external: true

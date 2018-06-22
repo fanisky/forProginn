@@ -1,0 +1,2 @@
+#定试运行，并记录日志
+*/5  *  *  *  * root /usr/bin/php71 -f /var/www/html/GdAutoDecoder/main.php >> /var/www/html/GdAutoDecoder/main.log

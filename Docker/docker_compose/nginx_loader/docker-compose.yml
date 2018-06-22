@@ -1,0 +1,25 @@
+version: '3'
+services:
+
+  nginx_loader:
+    image: 'nginx'
+    ports:
+      - "443:443"
+      - "80:80"
+    container_name: 'nginx_loader'
+    volumes:
+      - "/data/docker_data/nginx_loader/nginx.conf:/etc/nginx/nginx.conf"
+      - "/data/docker_data/nginx_loader/conf.d:/etc/nginx/conf.d"
+      - "/data/docker_data/nginx_loader/cert:/etc/nginx/cert"
+      - "/data/docker_data/nginx_loader/logs:/var/log/nginx"
+    expose:
+      - "443"
+      - "80"
+    networks: 
+      - 'default_net'
+    external_links: 
+      - 'gitlab'
+    container_name: 'nginx_loader'
+networks:
+  default_net:
+    external: true

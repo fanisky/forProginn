@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  aimpv2:
+    image: 'aimpv2-app'
+    ports:
+      - "8002:80"
+    container_name: 'aimpv2'
+    volumes:
+      - "/data/docker_data/woa-cxfq/logs:/var/www/html/storage/logs"
+#    expose:
+#      - "80"
+    networks:
+      - 'default_net'
+    
+    
+networks:
+  default_net:
+    external: true
